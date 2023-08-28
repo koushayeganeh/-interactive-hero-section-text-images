@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Vithkuqi&display=swap"
+      rel="stylesheet"
+    />
+    <title>Hero Section Project</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .hero-container {
+        position: relative;
+        width: 100%;
+        height: 1080px;
+        background-color: black;
+      }
+
+      .hero {
+        position: relative;
+        width: 120%;
+        height: 1080px;
+        background-color: black;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        color: white;
+        font-family: "Noto Serif Vithkuqi", serif;
+        font-size: 4rem;
+        margin: -60px;
+        overflow: hidden;
+      }
+
+      .word {
+        transition: opacity 0.3s ease;
+        margin-right: 2rem;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        /* background-color: yellow; */
+        opacity: 0.8;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      .image-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .image-container img {
+        max-width: none;
+        max-height: 100%;
+        object-fit: contain; /* Maintain aspect ratio */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-container">
+      <section class="hero" id="heroSection">
+        <!-- Random words will be added here -->
+      </section>
+      <div class="overlay">
+        <div class="image-container" id="categoryImage">
+          <img src="" alt="Category Image" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Define word categories
+      const wordCategories = [
+        [
+          "apple",
+          "banana",
+          "cherry",
+          "orange",
+          "grape",
+          "pear",
+          "pineapple",
+          "strawberry",
+          "blueberry",
+          "watermelon",
+          "kiwi",
+          "mango",
+          "peach",
+        ],
+        [
+          "potato",
+          "tomato",
+          "eggplant",
+          "bell pepper",
+          "onion",
+          "garlic",
+          "spinach",
+          "lettuce",
+          "kale",
+          "cabbage",
+          "broccoli",
+          "cauliflower",
+          "peas",
+        ],
+        [
+          "cat",
+          "dog",
+          "rabbit",
+          "hamster",
+          "parrot",
+          "goldfish",
+          "turtle",
+          "guinea pig",
+          "ferret",
+          "canary",
+          "gerbil",
+          "hedgehog",
+          "chinchilla",
+        ],
+        [
+          "book",
+          "pen",
+          "paper",
+          "pencil",
+          "notebook",
+          "marker",
+          "eraser",
+          "crayon",
+          "ruler",
+          "scissors",
+          "glue",
+          "stapler",
+          "calculator",
+        ],
+        [
+          "mountain",
+          "ocean",
+          "river",
+          "lake",
+          "forest",
+          "desert",
+          "valley",
+          "canyon",
+          "beach",
+          "island",
+          "volcano",
+          "waterfall",
+          "cave",
+        ],
+        [
+          "car",
+          "bicycle",
+          "motorcycle",
+          "bus",
+          "train",
+          "airplane",
+          "ship",
+          "truck",
+          "taxi",
+          "scooter",
+          "helicopter",
+          "subway",
+          "boat",
+        ],
+        [
+          "music",
+          "art",
+          "dance",
+          "theater",
+          "film",
+          "literature",
+          "photography",
+          "sculpture",
+          "architecture",
+          "poetry",
+          "design",
+          "ceramics",
+          "fashion",
+        ],
+      ];
+
+      // Define corresponding image URLs for each category
+      const imageUrls = [
+        "https://images.unsplash.com/photo-1603665301175-57ba46f392bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+        "https://images.unsplash.com/photo-1601326167532-d457cd8186cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+        "https://images.unsplash.com/photo-1607457661772-02cb7eb0511b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+        "https://images.unsplash.com/photo-1608501947097-86951ad73fea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+        "https://images.unsplash.com/photo-1533644756484-bb7b29ac7fcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80",
+        "https://images.unsplash.com/photo-1512413914633-b5043f4041ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80",
+        "https://images.unsplash.com/photo-1541512416146-3cf58d6b27cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1037&q=80",
+        // ... (add URLs for other images)
+      ];
+
+      // Select the hero section
+      const heroSection = document.getElementById("heroSection");
+      const categoryImage = document.querySelector("#categoryImage img");
+
+      // Generate a string with random words from different categories and set it as the content of the hero section
+      let randomWords = "";
+      for (let i = 0; i < 600; i++) {
+        const randomCategoryIndex = Math.floor(
+          Math.random() * wordCategories.length
+        );
+        const randomCategory = wordCategories[randomCategoryIndex];
+        const randomWordIndex = Math.floor(
+          Math.random() * randomCategory.length
+        );
+        randomWords += `<span class="word" data-category="${randomCategoryIndex}">${randomCategory[randomWordIndex]}</span> `;
+      }
+      heroSection.innerHTML = randomWords;
+
+      // Add hover behavior for words
+      const wordElements = document.querySelectorAll(".word");
+
+      let activeCategoryIndex = 0;
+      let hoverTimer;
+      let isHovering = false;
+
+      function updateWordOpacities() {
+        wordElements.forEach((word) => {
+          if (
+            word.getAttribute("data-category") === String(activeCategoryIndex)
+          ) {
+            word.style.opacity = "1";
+          } else {
+            word.style.opacity = "0.3";
+          }
+        });
+
+        categoryImage.src = imageUrls[activeCategoryIndex]; // Update image source
+
+        if (!isHovering) {
+          activeCategoryIndex =
+            (activeCategoryIndex + 1) % wordCategories.length;
+        }
+      }
+
+      function startHoverTimer() {
+        hoverTimer = setInterval(updateWordOpacities, 3000);
+        updateWordOpacities(); // Initial setup
+      }
+
+      startHoverTimer(); // Start the initial hover timer
+
+      wordElements.forEach((word) => {
+        word.addEventListener("mouseover", () => {
+          clearInterval(hoverTimer);
+          const category = word.getAttribute("data-category");
+          wordElements.forEach((otherWord) => {
+            if (otherWord.getAttribute("data-category") === category) {
+              otherWord.style.opacity = "1";
+            } else {
+              otherWord.style.opacity = "0.3";
+            }
+          });
+
+          categoryImage.src = imageUrls[category]; // Update image source
+          isHovering = true;
+        });
+
+        word.addEventListener("mouseout", () => {
+          startHoverTimer(); // Restart the hover timer
+          isHovering = false;
+        });
+      });
+    </script>
+  </body>
+</html>
